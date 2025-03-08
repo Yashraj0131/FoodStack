@@ -136,5 +136,6 @@ Checkout and Payment
 
 ## Contact
 For queries or suggestions, feel free to reach out:
-Email: support@foostack.com
-GitHub: Foostack Repo
+Email: yashrajmishra45@gmail.com
+GitHub: yashraj0131
+
