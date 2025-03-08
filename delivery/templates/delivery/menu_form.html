@@ -1,0 +1,51 @@
+{% extends "delivery/base.html" %} {% block content %}
+<div class="form-container">
+  <h2>Add a New Restaurant</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">{{ form.as_p }}</div>
+    <button class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  .form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 20px;
+    color: #ff4b2b;
+  }
+  .form-group p {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ff4b2b, #ff7300);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  .submit-btn:hover {
+    background: linear-gradient(135deg, #ff3b1a, #ff6000);
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}

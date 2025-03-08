@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodStack - Food Delivery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #fdf1ec;
+      color: #333;
+    }
+
+    nav {
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .menu-container {
+      width: 90%;
+      max-width: 1200px;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 50px auto;
+    }
+
+    .quote {
+      font-size: 20px;
+      font-weight: 600;
+      color: #ff416c;
+      margin-bottom: 20px;
+    }
+
+    .restaurant-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .restaurant-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+      width: 300px;
+    }
+
+    .restaurant-card:hover {
+      transform: scale(1.05);
+    }
+
+    .restaurant-img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .restaurant-info h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #ff416c;
+    }
+
+    .category, .rating, .address {
+      font-size: 14px;
+      margin: 5px 0;
+      color: #444;
+    }
+
+    .view-menu-btn {
+      display: inline-block;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .view-menu-btn:hover {
+      background: linear-gradient(135deg, #ff3a1b, #ff2058);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+      margin-top: 50px;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    const quotes = [
+      "Good food is good mood!",
+      "Life is too short for bad food. Order now!",
+      "Satisfy your cravings with delicious bites!",
+      "Spice up your life with tasty treats!",
+      "Hungry? We've got you covered!",
+      "Deliciousness jumping into your mouth!",
+      "Enjoy 20% off on your first order. Hurry up!",
+      "Get free dessert with orders above ₹500!"
+    ];
+
+    function displayQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.querySelector(".quote").innerText = quotes[randomIndex];
+    }
+
+    window.onload = displayQuote;
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png" alt="FoodStack Logo"> FoodStack
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'delivery:cusdisplay_res' username %}">View Restaurants</a>
+      <a href="{% url 'delivery:sign_in' %}">Sign In</a>
+      <a href="{% url 'delivery:sign_up' %}">Sign Up</a>
+    </div>
+  </nav>
+
+  <div class="menu-container">
+    <p class="quote"></p>
+    <h2>Hi {{ username }}, Explore the Menu!</h2>
+    <div class="restaurant-cards">
+      {% for item in li %}
+      <div class="restaurant-card">
+        <img src="{{ item.img }}" alt="Restaurant Image" class="restaurant-img" />
+        <div class="restaurant-info">
+          <h3>{{ item.Res_name }}</h3>
+          <p class="category">A🍽 {{ item.Food_cat }}</p>
+          <p class="rating">⭐ {{ item.rating }}/5</p>
+          <p class="address">📍 {{ item.address }}</p>
+          <a href="{% url 'delivery:cusmenu' item.id username %}" class="view-menu-btn">View Menu</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 FoodStack. All rights reserved.
+  </footer>
+</body>
+</html>

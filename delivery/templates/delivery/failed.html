@@ -1,0 +1,49 @@
+{% extends "delivery/base.html" %}
+
+{% block content %}
+<div class="failed-container">
+  <h2>Login Failed</h2>
+  <p>Oops! Something went wrong. Please check your credentials and try again.</p>
+  <a href="{% url 'delivery:sign_in' %}" class="retry-button">Try Again</a>
+</div>
+{% endblock %}
+
+<style>
+  .failed-container {
+    width: 50%;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 100px auto;
+  }
+
+  .failed-container h2 {
+    font-size: 28px;
+    color: #ff416c;
+    margin-bottom: 10px;
+  }
+
+  .failed-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .retry-button {
+    text-decoration: none;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .retry-button:hover {
+    background: linear-gradient(135deg, #ff3a1b, #ff2058);
+  }
+</style>

@@ -1,0 +1,100 @@
+{% extends "delivery/base.html" %} 
+
+{% block content %}
+<div class="form-container">
+  <h2 class="page-title">Add a New Restaurant</h2>
+  <form method="POST" class="restaurant-form" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="input-group">
+      <label for="id_Res_name">Restaurant Name:</label>
+      {{ form.Res_name }}
+    </div>
+
+    <div class="input-group">
+      <label for="id_Food_cat">Food Category:</label>
+      {{ form.Food_cat }}
+    </div>
+
+    <div class="input-group">
+      <label for="id_rating">Rating:</label>
+      {{ form.rating }}
+    </div>
+
+    <div class="input-group">
+      <label for="id_img">Image:</label>
+      {{ form.img }}
+    </div>
+
+    <div class="input-group">
+      <label for="id_address">Address:</label>
+      {{ form.address }}
+    </div>
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<style>
+  .form-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 24px;
+    color: #ff416c;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .restaurant-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .input-group {
+    text-align: left;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 5px;
+  }
+
+  .restaurant-form input, .restaurant-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    margin-top: 20px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .submit-btn:hover {
+    background: linear-gradient(135deg, #ff3a1b, #ff2058);
+  }
+</style>
+{% endblock %}

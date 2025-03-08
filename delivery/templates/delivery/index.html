@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to FoodStack</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/style.css' %}" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: url("https://source.unsplash.com/1600x900/?food-delivery,restaurant") no-repeat center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        max-width: 600px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .logo img {
+        width: 60px;
+        height: 60px;
+      }
+      h1 {
+        font-size: 48px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .tagline {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .btn-container {
+        margin-top: 25px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 14px 32px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(135deg, #ff8c00, #ff2e63);
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        margin: 12px;
+        box-shadow: 0 5px 20px rgba(255, 46, 99, 0.4);
+      }
+      .btn:hover {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #ff6900, #d40055);
+      }
+      .info {
+        margin-top: 25px;
+        font-size: 15px;
+        opacity: 0.9;
+        text-align: left;
+        max-width: 500px;
+      }
+      .quote {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 15px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const quotes = [
+          "Fresh food, fast delivery!",
+          "Bringing flavors to your doorstep.",
+          "Crave it, order it, love it!",
+          "Your hunger, our priority!",
+          "Savor every bite with FoodStack."
+        ];
+        document.getElementById("quote").textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="{% static 'delivery/images/food_logo.png' %}" alt="FoodStack Logo" />
+        <h1>FoodStack</h1>
+      </div>
+      <p class="tagline">Delicious meals, delivered fast.</p>
+      <p id="quote" class="quote"></p>
+      <div class="btn-container">
+        <a href="{% url 'delivery:sign_up' %}" class="btn">Sign Up</a>
+        <a href="{% url 'delivery:sign_in' %}" class="btn">Sign In</a>
+      </div>
+      <div class="info">
+        <h3>Our Promise</h3>
+        <p>FoodStack ensures quick, reliable, and hygienic food delivery from top restaurants. Our priority is to bring you fresh, hot, and delicious meals straight to your doorstep.</p>
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li>🚀 Lightning-fast delivery</li>
+          <li>🍽️ Wide variety of cuisines</li>
+          <li>🏅 Best-rated restaurants</li>
+          <li>✅ 100% hygiene assurance</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

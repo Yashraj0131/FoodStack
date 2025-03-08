@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - FoodStack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #fdf1ec;
+        color: #333;
+      }
+      .cart-container {
+        max-width: 90%;
+        width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        text-align: center;
+      }
+      .cart-header {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ff4b2b;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table, th, td {
+        border: 1px solid #ddd;
+      }
+      th, td {
+        padding: 15px;
+        text-align: center;
+        font-size: 16px;
+      }
+      .quantity-btn {
+        background: #ff4b2b;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px;
+        font-size: 16px;
+      }
+      .quantity-btn:hover {
+        background: #e64a19;
+      }
+      .total {
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      .checkout-btn {
+        margin-top: 20px;
+        padding: 14px 30px;
+        background: #ff5722;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .checkout-btn:hover {
+        background-color: #e64a19;
+      }
+      @media (max-width: 768px) {
+        .cart-container {
+          width: 95%;
+          padding: 20px;
+        }
+        table, th, td {
+          font-size: 14px;
+          padding: 10px;
+        }
+        .quantity-btn {
+          padding: 5px 10px;
+          font-size: 14px;
+        }
+        .checkout-btn {
+          font-size: 16px;
+          padding: 12px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart-container">
+      <h2 class="cart-header">Your Cart</h2>
+      {% if items %}
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.item_name }}</td>
+            <td id="price-{{ item.id }}">₹{{ item.price }}</td>
+            <td id="quantity-{{ item.id }}">{{ item.quantity }}</td>
+            <td>
+              <button class="quantity-btn" onclick="updateQuantity('{{ item.id }}', 'increase')">+</button>
+              <button class="quantity-btn" onclick="updateQuantity('{{ item.id }}', 'decrease')">-</button>
+              <button class="quantity-btn" onclick="removeItem('{{ item.id }}')">🗑</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <h3 class="total">Total: ₹<span id="total-price">{{ total_price }}</span></h3>
+      <a href="{% url 'delivery:checkout' username %}" class="checkout-btn">Proceed to Checkout</a>
+      {% else %}
+      <p>Your cart is empty.</p>
+      {% endif %}
+    </div>
+    <script>
+      function updateQuantity(itemId, action) {
+        fetch(`/update_cart/${itemId}/${action}/`, { 
+          method: 'POST', 
+          headers: { 'X-CSRFToken': '{{ csrf_token }}' } 
+        })
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById(`quantity-${itemId}`).innerText = data.new_quantity;
+            document.getElementById(`price-${itemId}`).innerText = `₹${data.new_price}`;
+            document.getElementById("total-price").innerText = data.total_price;
+          });
+      }
+      function removeItem(itemId) {
+        fetch(`/remove_from_cart/${itemId}/`, { 
+          method: 'POST', 
+          headers: { 'X-CSRFToken': '{{ csrf_token }}' } 
+        })
+          .then(response => response.json())
+          .then(data => location.reload());
+      }
+    </script>
+  </body>
+</html>
