@@ -1,118 +1,140 @@
-# Foostack - Food Delivery Project
+# FoodStack - Online Food Ordering System
 
-## Introduction
-Foostack is a dynamic food delivery platform designed to provide users with a seamless browsing and ordering experience. Inspired by popular services like Swiggy and Zomato, Foostack aims to bring restaurants closer to customers with intuitive navigation, efficient search filters, and detailed food category listings.
-
----
+FoodStack is a Django-based web application that allows users to register as restaurant owners or customers. Restaurant owners can add, edit, and delete restaurants, while customers can browse menus, place orders, and make payments using Razorpay.
 
 ## Features
-- User Authentication System (Sign Up/Sign In)
-- Restaurant Browsing with Filter Options
-- Detailed Menu Display with Categories
-- Integration of Popular Restaurant Chains like Pizza Hut and Domino's
-- Dynamic Rating and Review System
-- Location-based Restaurant Suggestions
-- Razorpay Integration for Secure Payments
 
----
+### **Authentication**
+- User registration and login (for both restaurant owners and customers)
+- Secure authentication using Django's built-in authentication system
 
-## Installation
-Follow these steps to set up Foostack on your local machine:
+### **Restaurant Management**
+- Add new restaurants
+- Edit and update restaurant details
+- Delete restaurants
 
-1. **Clone the Repository:**
-   ```bash
-   git clone <repository_link>
-   cd Foostack
-   ```
+### **Menu & Orders**
+- Customers can browse menus
+- Add items to the cart
+- Place orders
 
-2. **Create and Activate Virtual Environment:**
-   ```bash
-   python -m venv myenv
-   source myenv/bin/activate  # On Windows use: .\myenv\Scripts\activate
-   ```
+### **Payment Integration**
+- Razorpay integrated for secure online payments
 
-3. **Install Required Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Installation & Setup
 
-4. **Run Migrations:**
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+### **1. Clone the Repository**
+sh
+git clone https://github.com/your-username/FoodStack.git
+cd FoodStack
 
-5. **Create Superuser (For Admin Access):**
-   ```bash
-   python manage.py createsuperuser
-   ```
 
-6. **Run the Development Server:**
-   ```bash
-   python manage.py runserver
-   ```
+### **2. Set Up a Virtual Environment**
+sh
+python3 -m venv venv
+source venv/bin/activate  # For Mac/Linux
 
-7. **Access the Application:**
-   Visit `http://localhost:8000/`
 
----
+### **3. Install Dependencies**
+sh
+pip install -r requirements.txt
+
+
+### **4. Apply Migrations**
+sh
+python manage.py migrate
+
+
+### **5. Create a Superuser**
+sh
+python manage.py createsuperuser
+
+
+### **6. Run the Development Server**
+sh
+python manage.py runserver
+
+
+Now, open your browser and go to http://127.0.0.1:8000/
+
+## Directory Structure
+FoodStack/
+│── delivery/
+│   │── migrations/
+│   │── static/
+│   │── templates/delivery/
+│   │   ├── add_res.html
+│   │   ├── base.html
+│   │   ├── checkout.html
+│   │   ├── cusmenu.html
+│   │   ├── customer_home.html
+│   │   ├── display_res.html
+│   │   ├── failed.html
+│   │   ├── index.html
+│   │   ├── menu.html
+│   │   ├── orders.html
+│   │   ├── show_cart.html
+│   │   ├── sign_in.html
+│   │   ├── sign_up.html
+│   │   ├── success.html
+│   │   ├── userdata.html
+│   │── __init__.py
+│   │── admin.py
+│   │── apps.py
+│   │── forms.py
+│   │── models.py
+│   │── tests.py
+│   │── views.py
+│── manage.py
+│── requirements.txt
+
+
+## API Endpoints (If Using Django REST Framework)
+| Method | Endpoint | Description |
+|--------|----------------|--------------------------------|
+| GET | /restaurants/ | List all restaurants |
+| POST | /restaurants/add/ | Add a new restaurant |
+| PUT | /restaurants/update/<id>/ | Update restaurant details |
+| DELETE | /restaurants/delete/<id>/ | Delete a restaurant |
+| GET | /menu/ | Get menu items |
+| POST | /order/ | Place an order |
+
+## Razorpay Payment Integration
+1. Sign up at [Razorpay](https://razorpay.com/)
+2. Get API keys from Razorpay Dashboard
+3. Add API keys to Django settings:
+python
+RAZORPAY_KEY_ID = "your_key_id"
+RAZORPAY_KEY_SECRET = "your_key_secret"
 
 ## Screenshots
-### Homepage
-![Homepage](./screenshots/Screenshot_164.png)
+Below are some screenshots that showcase the interface and functionality of Foostack:
 
-### Pizza Hut Menu
-![Pizza Hut](./screenshots/Screenshot_165.png)
+Home Page
 
-### Domino's Menu
-![Domino's](./screenshots/Screenshot_166.png)
+![Screenshot (165)](https://github.com/user-attachments/assets/2e2ae5ff-2ec6-491d-be36-9e17db87d99f)
 
-### Checkout Page
-![Checkout](./screenshots/Screenshot_167.png)
 
-### Payment Gateway (Razorpay)
-![Razorpay](./screenshots/Screenshot_169.png)
+Menu Listings
 
-### Order Confirmation
-![Order Confirmation](./screenshots/Screenshot_170.png)
+![Screenshot (167)](https://github.com/user-attachments/assets/443207ff-2697-4687-bd41-eadf6c309bb1)
 
-### User Profile and Orders
-![User Profile](./screenshots/Screenshot_171.png)
 
-### Admin Dashboard
-![Admin Dashboard](./screenshots/Screenshot_172.png)
+Menu Integration
 
----
+![Screenshot (166)](https://github.com/user-attachments/assets/4ea971a9-6c3d-47d3-b169-2ee52b196833)
 
-## Upcoming Features
-- Real-Time Order Tracking
-- Push Notifications for Order Status
-- Integration with More Restaurant Chains
-- Improved UI Design and Enhanced User Experience
 
----
+Checkout and Payment
+![Screenshot (169)](https://github.com/user-attachments/assets/2d5ebbf5-cf8a-49f4-9aad-6976c28f2c2c) 
 
-## Contribution
-We welcome contributions! If you'd like to improve Foostack, follow these steps:
+![Screenshot (170)](https://github.com/user-attachments/assets/26e67c46-8f1b-4f53-b7ba-959c9d414e55)
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -m 'Add new feature'`
-4. Push to the branch: `git push origin feature/new-feature`
-5. Submit a pull request.
 
----
 
-## License
-This project is licensed under the MIT License.
 
----
 
 ## Contact
-For queries or collaborations, feel free to reach out:
-- **Email:** yashrajmishra45@gmail.com
-- **GitHub:** [Yashraj0131](https://github.com/Yashraj0131)
-
----
-
-**Happy Coding! 🚀**
+For queries or suggestions, feel free to reach out:
+Email: support@foostack.com
+GitHub: Foostack Repo
