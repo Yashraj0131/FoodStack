@@ -1,110 +1,118 @@
-# FoodStack - Online Food Ordering System
+# Foostack - Food Delivery Project
 
-FoodStack is a Django-based web application that allows users to register as restaurant owners or customers. Restaurant owners can add, edit, and delete restaurants, while customers can browse menus, place orders, and make payments using Razorpay.
+## Introduction
+Foostack is a dynamic food delivery platform designed to provide users with a seamless browsing and ordering experience. Inspired by popular services like Swiggy and Zomato, Foostack aims to bring restaurants closer to customers with intuitive navigation, efficient search filters, and detailed food category listings.
+
+---
 
 ## Features
+- User Authentication System (Sign Up/Sign In)
+- Restaurant Browsing with Filter Options
+- Detailed Menu Display with Categories
+- Integration of Popular Restaurant Chains like Pizza Hut and Domino's
+- Dynamic Rating and Review System
+- Location-based Restaurant Suggestions
+- Razorpay Integration for Secure Payments
 
-### **Authentication**
-- User registration and login (for both restaurant owners and customers)
-- Secure authentication using Django's built-in authentication system
+---
 
-### **Restaurant Management**
-- Add new restaurants
-- Edit and update restaurant details
-- Delete restaurants
+## Installation
+Follow these steps to set up Foostack on your local machine:
 
-### **Menu & Orders**
-- Customers can browse menus
-- Add items to the cart
-- Place orders
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository_link>
+   cd Foostack
+   ```
 
-### **Payment Integration**
-- Razorpay integrated for secure online payments
+2. **Create and Activate Virtual Environment:**
+   ```bash
+   python -m venv myenv
+   source myenv/bin/activate  # On Windows use: .\myenv\Scripts\activate
+   ```
 
-## Installation & Setup
+3. **Install Required Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### **1. Clone the Repository**
-```sh
-git clone https://github.com/your-username/FoodStack.git
-cd FoodStack
-```
+4. **Run Migrations:**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 
-### **2. Set Up a Virtual Environment**
-```sh
-python3 -m venv venv
-source venv/bin/activate  # For Mac/Linux
-```
+5. **Create Superuser (For Admin Access):**
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-### **3. Install Dependencies**
-```sh
-pip install -r requirements.txt
-```
+6. **Run the Development Server:**
+   ```bash
+   python manage.py runserver
+   ```
 
-### **4. Apply Migrations**
-```sh
-python manage.py migrate
-```
+7. **Access the Application:**
+   Visit `http://localhost:8000/`
 
-### **5. Create a Superuser**
-```sh
-python manage.py createsuperuser
-```
+---
 
-### **6. Run the Development Server**
-```sh
-python manage.py runserver
-```
+## Screenshots
+### Homepage
+![Homepage](./screenshots/Screenshot_164.png)
 
-Now, open your browser and go to `http://127.0.0.1:8000/`
+### Pizza Hut Menu
+![Pizza Hut](./screenshots/Screenshot_165.png)
 
-## Directory Structure
-```
-FoodStack/
-│── delivery/
-│   │── migrations/
-│   │── static/
-│   │── templates/delivery/
-│   │   ├── add_res.html
-│   │   ├── base.html
-│   │   ├── checkout.html
-│   │   ├── cusmenu.html
-│   │   ├── customer_home.html
-│   │   ├── display_res.html
-│   │   ├── failed.html
-│   │   ├── index.html
-│   │   ├── menu.html
-│   │   ├── orders.html
-│   │   ├── show_cart.html
-│   │   ├── sign_in.html
-│   │   ├── sign_up.html
-│   │   ├── success.html
-│   │   ├── userdata.html
-│   │── __init__.py
-│   │── admin.py
-│   │── apps.py
-│   │── forms.py
-│   │── models.py
-│   │── tests.py
-│   │── views.py
-│── manage.py
-│── requirements.txt
-```
+### Domino's Menu
+![Domino's](./screenshots/Screenshot_166.png)
 
-## API Endpoints (If Using Django REST Framework)
-| Method | Endpoint | Description |
-|--------|----------------|--------------------------------|
-| GET | `/restaurants/` | List all restaurants |
-| POST | `/restaurants/add/` | Add a new restaurant |
-| PUT | `/restaurants/update/<id>/` | Update restaurant details |
-| DELETE | `/restaurants/delete/<id>/` | Delete a restaurant |
-| GET | `/menu/` | Get menu items |
-| POST | `/order/` | Place an order |
+### Checkout Page
+![Checkout](./screenshots/Screenshot_167.png)
 
-## Razorpay Payment Integration
-1. Sign up at [Razorpay](https://razorpay.com/)
-2. Get API keys from Razorpay Dashboard
-3. Add API keys to Django settings:
-```python
-RAZORPAY_KEY_ID = "your_key_id"
-RAZORPAY_KEY_SECRET = "your_key_secret"
-```
+### Payment Gateway (Razorpay)
+![Razorpay](./screenshots/Screenshot_169.png)
+
+### Order Confirmation
+![Order Confirmation](./screenshots/Screenshot_170.png)
+
+### User Profile and Orders
+![User Profile](./screenshots/Screenshot_171.png)
+
+### Admin Dashboard
+![Admin Dashboard](./screenshots/Screenshot_172.png)
+
+---
+
+## Upcoming Features
+- Real-Time Order Tracking
+- Push Notifications for Order Status
+- Integration with More Restaurant Chains
+- Improved UI Design and Enhanced User Experience
+
+---
+
+## Contribution
+We welcome contributions! If you'd like to improve Foostack, follow these steps:
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Commit changes: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+For queries or collaborations, feel free to reach out:
+- **Email:** yashrajmishra45@gmail.com
+- **GitHub:** [Yashraj0131](https://github.com/Yashraj0131)
+
+---
+
+**Happy Coding! 🚀**
